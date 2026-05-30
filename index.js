@@ -25,6 +25,9 @@ client.on(Events.MessageCreate, (message) => {
 	}
 });
 
+// ===== 允許使用開罐罐的頻道 =====
+const ALLOWED_CHANNEL_ID = '1140546598611456020';
+
 // ===== 稱號設定 =====
 const prizes = [
 	{ name: '牛奶貓', weight: 2 },
@@ -74,7 +77,14 @@ client.on('messageCreate', async (message) => {
 
 	if (message.author.bot) return;
 
-	if (message.content !== '!開罐罐') return;
+	if (message.channel.id !== ALLOWED_CHANNEL_ID) return;
+
+	if (message.content !== '!開罐罐') return; {
+
+		return message.reply(
+			`❌ 請到 <#${ALLOWED_CHANNEL_ID}> 使用開罐罐功能！`,
+		);
+	}
 
 	const member = message.member;
 	const userId = member.id;
