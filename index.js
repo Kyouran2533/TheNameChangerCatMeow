@@ -77,14 +77,12 @@ client.on('messageCreate', async (message) => {
 
 	if (message.author.bot) return;
 
-	if (message.channel.id !== ALLOWED_CHANNEL_ID) return;
+	if (message.content !== '!開罐罐') return;
 
-	if (message.content !== '!開罐罐') return; {
-
-		return message.reply(
-			`❌ 請到 <#${ALLOWED_CHANNEL_ID}> 使用開罐罐功能！`,
-		);
-	}
+	if (message.channel.id !== ALLOWED_CHANNEL_ID) {return message.reply(
+		`🐱 請前往 <#${ALLOWED_CHANNEL_ID}> 開罐罐！`
+	);
+}
 
 	const member = message.member;
 	const userId = member.id;
